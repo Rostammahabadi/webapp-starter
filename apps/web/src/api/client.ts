@@ -19,9 +19,11 @@ export const getApiClient = () => {
   return hc<AppType>(getBaseUrl(), {
     fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
       const headers = new Headers(init?.headers);
-      const authToken = await getToken();
-
-      headers.set("Authorization", `Bearer ${authToken}`);
+      // Temporarily disabled authentication
+      // const authToken = await getToken();
+      // if (authToken) {
+      //   headers.set("Authorization", `Bearer ${authToken}`);
+      // }
 
       const response = await fetch(input, {
         ...init,
